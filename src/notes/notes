@@ -1,0 +1,45 @@
+Angular 5 Notes
+What is typescript
+->
+ *	it is supper set of java script
+	It provide so many feature than vanilla js
+	Interfaces
+	Classes
+	Types
+
+ *	But Typescript does not run in the browser
+	It need to compiled to javascript
+
+		Typescript
+			||
+			||Complication
+			\/
+		java script
+
+ *
+  how to install bootstrap in the  angualr 5
+	npm install --save bootstrap
+
+
+ * if you want use bootstrap  run following command
+	npm install --save bootstrap@3
+
+
+  * open .angular-cli.json
+	add following  in path
+	styles:[
+		"../node_modules/bootstrap/dist/css/bootstrap.min.css"
+	]
+
+
+ How to load pages in Angular
+ Firt angular load the index.html
+
+
+ Component are Key Feature in agular JS
+
+ Components
+
+
+
+
