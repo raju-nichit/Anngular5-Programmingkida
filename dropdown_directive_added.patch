@@ -1,0 +1,17 @@
+Index: src/app/shared/dropdown.directive.ts
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/app/shared/dropdown.directive.ts	(date 1516859655000)
++++ src/app/shared/dropdown.directive.ts	(date 1516859678992)
+@@ -4,8 +4,7 @@
+   selector: '[appDropdown]'
+ })
+ export class DropdownDirective {
+-  isOpen = false;
+-  @HostBinding('class.open') isOpen = false;
++   @HostBinding('class.open') isOpen = false;
+ 
+   constructor() {
+   }
