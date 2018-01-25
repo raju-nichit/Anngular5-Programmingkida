@@ -1,0 +1,12 @@
+Structural Custom directive
+
+--Directive
+  Directive is the predefine class used to create the custom directives[Atrribute type cust Directive and structural type cust directive]
+  -TemplateRef
+    Template ref is the predine class used to manipulate the the DOM in Structural type custom directive
+   -ViewContainerRef
+     it is predifine class used to manipulate the templates the view in the structural custom directive
+
+Ex
+  <h1 *myDirective="true"> This is structural custom directive</h1>
+
