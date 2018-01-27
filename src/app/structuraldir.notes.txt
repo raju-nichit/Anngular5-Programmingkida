@@ -10,3 +10,10 @@ Structural Custom directive
 Ex
   <h1 *myDirective="true"> This is structural custom directive</h1>
 
+
+
+Communication between component
+ViewChild is  the predefine class used to provide the communication from  parent component to child  component
+
+Steps to provide communication provide parent component to child component
+
