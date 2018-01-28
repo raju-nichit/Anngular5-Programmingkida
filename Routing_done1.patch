@@ -1,0 +1,111 @@
+Index: src/app/recipes/recipe.service.ts
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/app/recipes/recipe.service.ts	(date 1517059757000)
++++ src/app/recipes/recipe.service.ts	(date 1517076165568)
+@@ -7,8 +7,6 @@
+ export class RecipeService {
+ 
+ 
+-  recipeSelected = new EventEmitter<Recipe>();
+-
+   private recipes: Recipe[] = [
+     new Recipe(
+       'Tasty Schnitzel',
+Index: src/app/recipes/recipes.component.ts
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/app/recipes/recipes.component.ts	(date 1517059757000)
++++ src/app/recipes/recipes.component.ts	(date 1517076262683)
+@@ -12,13 +12,7 @@
+ 
+   selectedRecipe: Recipe;
+ 
+-  constructor(private  reicpeService: RecipeService) {
+-  }
+-
+   ngOnInit() {
+-    this.reicpeService.recipeSelected.subscribe((recipe: Recipe) => {
+-      this.selectedRecipe = recipe;
+-    });
+   }
+ 
+ }
+Index: src/app/shopping-list/shopping-list.component.ts
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/app/shopping-list/shopping-list.component.ts	(date 1517059757000)
++++ src/app/shopping-list/shopping-list.component.ts	(date 1517077149870)
+@@ -1,4 +1,5 @@
+-import {Component, OnInit} from '@angular/core';
++import {Component, OnDestroy, OnInit} from '@angular/core';
++import {Subscription} from 'rxjs/Subscription';
+ import {Ingredient} from '../shared/ingredient.model';
+ import {ShoppingListService} from './shopping-list.service';
+ 
+@@ -7,8 +8,9 @@
+   templateUrl: './shopping-list.component.html',
+   styleUrls: ['./shopping-list.component.css']
+ })
+-export class ShoppingListComponent implements OnInit {
++export class ShoppingListComponent implements OnInit, OnDestroy {
+   ingredients: Ingredient[];
++  private subscription: Subscription;
+ 
+   constructor(private shoppingListService: ShoppingListService) {
+ 
+@@ -16,10 +18,13 @@
+ 
+   ngOnInit() {
+     this.ingredients = this.shoppingListService.getIngredients();
+-    this.shoppingListService.ingredientChanged.subscribe((ingredients: Ingredient[]) => {
++    this.subscription = this.shoppingListService.ingredientChanged.subscribe((ingredients: Ingredient[]) => {
+       this.ingredients = ingredients;
+     });
+   }
+ 
++  ngOnDestroy() {
++    this.subscription.unsubscribe();
++  }
+ 
+ }
+Index: src/app/shopping-list/shopping-list.service.ts
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/app/shopping-list/shopping-list.service.ts	(date 1517059757000)
++++ src/app/shopping-list/shopping-list.service.ts	(date 1517076329806)
+@@ -1,9 +1,9 @@
+ import {Ingredient} from '../shared/ingredient.model';
+-import {EventEmitter} from '@angular/core';
++import {Subject} from 'rxjs/Subject';
+ 
+ export class ShoppingListService {
+ 
+-  ingredientChanged = new EventEmitter<Ingredient[]>();
++  ingredientChanged = new Subject<Ingredient[]>();
+   private ingredients: Ingredient[] = [
+     new Ingredient('Apples', 5),
+     new Ingredient('Tomatoes', 10),
+@@ -15,12 +15,12 @@
+ 
+   addIngredient(ingredient: Ingredient) {
+     this.ingredients.push(ingredient);
+-    this.ingredientChanged.emit(this.ingredients.slice());
++    this.ingredientChanged.next(this.ingredients.slice());
+   }
+ 
+   addIngredients(ingredients: Ingredient[]) {
+     this.ingredients.push(...ingredients);
+-    this.ingredientChanged.emit(this.ingredients.slice());
++    this.ingredientChanged.next(this.ingredients.slice());
+   }
+ }
+ 
