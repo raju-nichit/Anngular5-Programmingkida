@@ -8,7 +8,7 @@ import {AuthService} from '../auth/auth.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  constructor(private  dsService: DataStorageService, private  authService: AuthService) {
+  constructor(private  dsService: DataStorageService, public  authService: AuthService) {
   }
 
   ngOnInit() {
