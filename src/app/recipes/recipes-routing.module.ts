@@ -24,5 +24,4 @@ const recipesRoutes: Routes = [
 })
 
 export class RecipesRoutingModule {
-
 }

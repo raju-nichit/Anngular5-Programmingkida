@@ -17,6 +17,6 @@ export class RecipeItemComponent implements OnInit, OnDestroy {
 
 
   ngOnDestroy() {
-    console.log('OnDestroy');
+    // console.log('OnDestroy');
   }
 }

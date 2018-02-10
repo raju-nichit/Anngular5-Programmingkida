@@ -13,13 +13,13 @@ export class DataStorageService {
 
   storeRecipes() {
     const authToken = this.authService.getToken();
-    return this.http.put('https://angular5-recipe-book-19fca.firebaseio.com/recipes.json?auth=' + authToken, this.recipeService.getRecipes());
+    return this.http.put('firbase url' + authToken, this.recipeService.getRecipes());
   }
 
   getRecipes() {
     const authToken = this.authService.getToken();
 
-    this.http.get('https://angular5-recipe-book-19fca.firebaseio.com/recipes.json?auth=' + authToken)
+    this.http.get('firbase url' + authToken)
       .map(
         (response: Response) => {
           const recipes: Recipe[] = response.json();
